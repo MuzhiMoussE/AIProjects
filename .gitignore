@@ -126,6 +126,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.pth
-.pt
-.mp4
+*.pth
+*.pt
+*.mp4

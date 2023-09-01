@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI项目演示</title>
+    <style>
+        h1 {
+            font-size: 60px;
+            color: #0128aa;
+            text-align: center;
+        }        
+        h2 {
+            font-size: 30px;
+            color: #000000;
+        }
+        h3 {
+            font-size: 30px;
+            color: #000000;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .image-container img {
+            max-width: 80%;
+            height: auto;
+        }
+
+        button {
+            background-color: #b3d9ff;
+            color: #00305f;
+            font-size: 15px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #82c1ff;
+        }
+
+        .file-input-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        .file-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .custom-button {
+            background-color: #b3d9ff;
+            color: #00305f;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .custom-button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI 项目演示</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="file-input-container">
+            <label class="custom-button" for="imageInput">选择图片</label>
+            <input type="file" id="imageInput" class="file-input" name="image" accept="image/*" required>
+        </div>
+        <div class="button-container">
+            <button type="submit">目标检测</button>
+        </div>
+    </form>
+    {% if processed_image_data %}
+        <h2>对比：</h2>
+        <div class="image-container">
+            <div>
+                <h3>原图：</h3>
+                <img src="data:image/jpeg;base64,{{ original_image_data }}" alt="Original Image">
+            </div>
+            <div>
+                <h3>检测结果：</h3>
+                <img src="data:image/jpeg;base64,{{ processed_image_data }}" alt="Processed Image">
+            </div>
+        </div>
+    {% endif %}
+    <form method="GET">
+        <div class="button-container">
+            <button type="submit" name="download" value="true">下载处理后的图片</button>
+        </div>
+    </form>
+</body>
+</html>

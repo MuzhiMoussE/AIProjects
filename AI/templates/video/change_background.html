@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <title>背景替换</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            font-size: 18px;
+            color: white;
+        }
+        
+        a {
+            text-decoration: none;
+            color: white;
+            /*color:white;*/
+        }
+        
+        ul {
+            position: relative;
+            background: #0e6bc2;
+            height: 50px;
+            width: auto;
+            list-style: none;
+        }
+        
+        li {
+            background: #0e6bc2;
+            min-width: 144px;
+            width: auto;
+            height: 50px;
+            line-height: 50px;
+        }
+        
+        li:hover {
+            background-color: #005691;
+        }
+        
+        div {
+            box-sizing: border-box;
+            /*便于对齐，免受各类型元素padding不一致的影响*/
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            width: 100%;
+        }
+        
+        .sub-menu {
+            display: none;
+        }
+        
+        .menu-item {
+            display: block;
+            text-align: center;
+        }
+        
+        #bg {
+            margin: 0 auto;
+            max-width: 1400px;
+        }
+        
+        img {
+            width: 100%;
+        }
+        
+        .block {
+            display: block;
+        }
+        
+        input {
+            outline-style: none;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 3px 4px;
+            width: 200px;
+            font-size: 14px;
+            font-weight: 200;
+        }
+        
+        .form {
+            color: black;
+            margin: 0 auto;
+            max-width: 1400px;
+        }
+        
+        #datetime {
+            font-size: 20px;
+            background: linear-gradient(to right, rgb(53, 177, 72), rgb(118, 7, 7));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .times {
+            letter-spacing: 0.2rem;
+            font-size: 1.2rem;
+			background-image: -webkit-linear-gradient(left, #961414, #9005e6 10%, #142396 10%, #05e679 50%, #879614);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-background-size: 200% 100%;
+        }
+    </style>
+ 
+	<script>
+		var user = JSON.parse(localStorage.getItem('user')) || []
+		var m = parseInt(localStorage.getItem('times')) || 1;
+		console.log(m);
+		window.addEventListener("load", () => {
+			let item = document.getElementsByClassName('menu-item')
+			for (let i = 0; i < item.length; i++) {
+				item[i].addEventListener("mouseover", mouserOver)
+				item[i].addEventListener("mouseout", mouserOut)
+			}
+ 
+			function mouserOver() {
+				this.children[1].classList.add('block')
+			}
+ 
+			function mouserOut() {
+				this.children[1].classList.remove('block')
+			}
+ 
+			setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();", 500);
+			document.getElementById('frequency').innerHTML = m
+ 
+		})
+		window.addEventListener("beforeunload", () => {
+ 
+			m++;
+			console.log(m);
+			localStorage.setItem('times', JSON.stringify(m))
+		})
+ 
+		nam = document.getElementById("name")
+		num = document.getElementById("num")
+		tel = document.getElementById("tel")
+		nam.value = user.id
+		num.value = user.num
+		tel.value = user.tel
+ 
+		function local(value) {
+			localStorage.setItem('user', JSON.stringify(value))
+		}
+ 
+		function add() {
+			const nam = {
+				id: document.getElementById('name').value,
+				num: document.getElementById('num').value,
+				tel: document.getElementById('tel').value,
+			}
+			local(nam)
+		}
+	</script>
+        <style>
+        h1 {
+            font-size: 60px;
+            color: #0128aa;
+            text-align: center;
+        }        
+        h2 {
+            font-size: 30px;
+            color: #000000;
+        }
+        h3 {
+            font-size: 30px;
+            color: #000000;
+        }
+
+        button {
+            background-color: #b3d9ff;
+            color: #00305f;
+            font-size: 15px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #82c1ff;
+        }
+
+        .file-input-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .file-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+    
+        .custom-button {
+            background-color: #b3d9ff;
+            color: #00305f;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .custom-button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+    <style>
+        h1 {
+            font-size: 60px;
+            color: #0128aa;
+            text-align: center;
+        }        
+        h2 {
+            font-size: 30px;
+            color: #000000;
+        }
+        h3 {
+            font-size: 30px;
+            color: #000000;
+        }
+
+        button {
+            background-color: #b3d9ff;
+            color: #00305f;
+            font-size: 15px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #82c1ff;
+        }
+
+        .file-input-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .file-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+    
+        .custom-button {
+            background-color: #b3d9ff;
+            color: #00305f;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .custom-button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+ 
+<!--顶部菜单-->
+<body>
+    <ul class="nav">
+        <li class="menu-item"><a href="/">首页</a>
+        </li>
+        <li class="menu-item"><a href="/photo/photo">图片处理</a>
+            <ul class="sub-menu">
+                <li><a href="/photo/object_detection">目标检测</a></li>
+                <li><a href="/photo/face_detection">人脸识别</a></li>
+                <li><a href="/photo/expression">表情迁移</a></li>
+                <li><a href="/photo/face">人脸重建</a></li>
+            </ul>
+        </li>
+        <li class="menu-item"><a href="/video/video">视频处理</a>
+            <ul class="sub-menu">
+                <li><a href="/video/change_background">背景替换</a></li>
+                <li><a href="/video/object_detection">目标检测</a></li>
+                <li><a href="/video/face_detection">人脸识别</a></li>
+                <li><a href="/video/change_face">换脸模块</a></li>
+            </ul>
+        </li>
+
+        <li class="menu-item"><a href="/voice/voice">语音生成</a>
+            <ul class="sub-menu">
+                <li><a href="/voice/speech_forgery">语音伪造</a></li>
+                <li><a href="/voice/talking_head">口播视频</a></li>
+                <li><a href="/voice/lip_drive">唇形驱动</a></li>
+            </ul>
+        </li>
+
+        <li class="menu-item"><a href="/auto_compose">自动配乐</a>
+        </li>
+ 
+        <li class="menu-item"><a href="/about_us">关于我们</a>
+        </li>
+    </ul>
+    <div id="bg"><img src="../images/bg.png"alt="图片加载失败" title = "提示文本"></div>
+
+</body>
+
+<body>
+    <h1>BackgroundMattingV2</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="file-input-container">
+            <label class="custom-button" for="video">选择视频</label>
+            <input type="file" class="file-input" name="video" accept="video/*" required>
+        </div>
+        <div class="file-input-container">
+            <label class="custom-button" for="original_background">选择背景</label>
+            <input type="file" class="file-input" name="original_background" accept="image/*" required>
+        </div>
+        <div class="file-input-container">
+            <label class="custom-button" for="replacement_background">替换背景</label>
+            <input type="file" class="file-input" name="replacement_background" accept="image/*" required>
+        </div>
+        
+        <div class="button-container">
+            <button type="submit">背景替换</button>
+        </div>
+    </form>
+    <form method="GET">
+        <div class="button-container">
+            <button type="submit" name="download" value="true">下载处理后的视频</button>
+        </div>
+    </form>
+</body>
+</html>
